@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IMC Calculator</title>
+
+  <link rel="stylesheet" href="./assets/style.css">
+  <script src="./assets/main.js" defer></script>
+</head>
+<body>
+  <h1>IMC Calculator</h1>
+
+  <main>
+    <section id="imc-info">
+      <h2>IMC Table</h2>
+
+      <div class="table-container">
+        <table id="imc-info-table">
+          <thead>
+            <tr>
+              <th>IMC range</th>
+              <th>Result</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>IMC &le; 18,5</td>
+              <td>Under weight</td>
+            </tr>
+            <tr>
+              <td>18,5 &lt; IMC &le; 25</td>
+              <td>Normal weight</td>
+            </tr>
+            <tr>
+              <td>25 &lt; IMC &le; 30</td>
+              <td>Over weight</td>
+            </tr>
+            <tr>
+              <td>30 &lt; IMC &le; 35</td>
+              <td>Grade 1 of obesity</td>
+            </tr>
+            <tr>
+              <td>35 &lt; IMC &le; 40</td>
+              <td>Grade 2 of obesity</td>
+            </tr>
+            <tr>
+              <td>IMC &gt; 40</td>
+              <td>Grade 3 of obesity</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+    <section id="imc-calc">
+      <h2>Calculate your IMC &#128071;&#127997;</h2>
+      
+      <form action="#" id="imc-calc-form" class="active">
+        <div class="imc-calc-form-input-button">
+          <label for="weight">Weight (Kg)</label>
+          <input type="number" max="600" min="0" step=".01" id="weight" placeholder="Your weight">
+        </div>
+        <div class="imc-calc-form-input-button">
+          <label for="weight">Height (m)</label>
+          <input type="number" max="3" min="0.5" step=".01" id="height" placeholder="Your height">
+        </div>
+        <div class="imc-calc-form-input-button">
+          <button class="button">Calculate</button>
+        </div>
+        
+      </form>
+
+      <div class="loader">
+        <div class="loading"></div>
+        <div class="legend">Calculando o IMC...</div>
+      </div>
+
+      <div class="imc-calc-resp">
+        <span class="imc-calc-resp-text"></span>
+        <button class="imc-calc-resp-button button">Calculate other IMC</button>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
