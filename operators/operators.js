@@ -28,3 +28,28 @@ contador2 += passo
 console.log(contador2)
 contador -= passo
 console.log(contador2)
+
+console.log(10 > 10)
+console.log(45 >= '45')
+console.log(10 <= 11)
+console.log(100 != '100')
+console.log(100 !== '10')
+console.log(100 == '100')
+console.log(100 === '100')
+
+//Short-circuit
+console.log('Eu' && 'você') //returns 'você', cause && operator did not find a false expression
+console.log('Eu' && NaN) //returns NaN, cause && operator find
+
+function falaOi(){
+  console.log('Olá')
+}
+let vaiExecutar = false
+vaiExecutar && falaOi()
+
+console.log(0 || false || null || 'Luiz Otávio' || true)
+
+let userColor = null
+const defaultColor = 'black'
+const systemColor = userColor || defaultColor
+console.log(systemColor)
