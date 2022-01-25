@@ -28,6 +28,7 @@ const rankImc = (imcValue) =>{
     return 'normal weight'
   }else if (imcValue <= 30){
     return 'over weight'
+
   }else if (imcValue <= 35){
     return 'grade 1 of obesity'
   }else if (imcValue <= 40){
@@ -80,4 +81,3 @@ const handleRestart = () =>{
 
 form.addEventListener('submit', handleSubmit)
 restartButton.addEventListener('click', handleRestart)
-

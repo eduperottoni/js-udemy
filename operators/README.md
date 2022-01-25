@@ -94,3 +94,4 @@ const defaultColor = 'black'
 const systemColor = userColor || defaultColor
 console.log(systemColor) //returns 'black', cause defaultColor is the first true value
 ```
+In the case above, qe call the defaultColor as a variable callback, it's like a default value set to the variable
