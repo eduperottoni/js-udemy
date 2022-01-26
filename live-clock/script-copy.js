@@ -13,53 +13,16 @@ const createElement = (element,node,classes) =>{
   return newElement
 } 
 
-const addZero = (number) => number < 10 ? `0${number}` : number
-
-const getWeekDayTxt = (weekDayNum) =>{
-  switch (weekDayNum){
-  case 0:
-    return 'Sunday'
-  case 1:
-    return 'Monday'
-  case 2:
-    return 'Tuesday'
-  case 3:
-    return 'Wednesday'
-  case 4:
-    return 'Thursday'
-  case 5:
-    return 'Friday'
-  case 6:
-    return 'Saturday'
-  default:
-    return 'Invalid'
-  }
-}
-
-const getMonthTxt = (monthNum) => {
-  const monthsArray = ['January','February','March','April','May','June','July','August','September','October','November','December','Invalid']
-  return (0 < monthNum < 11) ? monthsArray[monthNum] : monthsArray[7]
-}
-
-const formatDate = (dateObj) =>{
-  const weekDay = getWeekDayTxt(dateObj.getDay())
-  const monthDay = addZero(dateObj.getDate())
-  const month = getMonthTxt(dateObj.getMonth())
-  const year = dateObj.getFullYear()
-  const hour = addZero(dateObj.getHours())
-  const minutes = addZero(dateObj.getMinutes())
-  const seconds = addZero(dateObj.getSeconds())
-
-  return {weekDay, monthDay, month, year, hour, minutes, seconds}
-}
-
 const showCurrentDate = () => {
-  const div1 = createElement('div',header,['day'])
-  const div2 = createElement('div',header,['clock'])
+  const div1 = createElement('div',header,['current-date'])
+  const div2 = createElement('div',header,['current-time'])
   setInterval(() => {
-    const {weekDay, monthDay, month, year, hour, minutes, seconds} = formatDate(getCurrentDate())
-    div1.innerHTML = `${weekDay}, ${month} ${monthDay}, ${year}`
-    div2.innerHTML = `${hour}:${minutes}:${seconds}`
+    const date = getCurrentDate()
+    let options = {     
+      dateStyle: 'full'
+    }
+    div1.innerHTML = date.toLocaleDateString('en-US', options)
+    div2.innerHTML = date.toLocaleTimeString()
   }, 1000);
 }
 
@@ -98,18 +61,16 @@ const inputValidation = () =>{
 }
 
 const showTimeAlive = () =>{
+  clearRespSection()
+  const {spanYears, spanMonths, spanDays, spanHours, spanMinutes, spanSeconds} = createRespElements()
   const birthMs = getBirthMs()
   const secondMs = 1000, minuteMs = 60*secondMs, hourMs = 60*minuteMs, dayMs = 24*hourMs, monthMs = 30*dayMs, yearMs = (365*dayMs + 6*hourMs)
-  setInterval(() => {
+  const interval = setInterval(() => {
     const currentMs = getCurrentDate().getTime()
     const msLived = (currentMs - birthMs)
-    console.log(msLived)
     if (msLived < 0){
       inputValidation()
     }else{
-      clearRespSection()
-      const {spanYears, spanMonths, spanDays, spanHours, spanMinutes, spanSeconds} = createRespElements()
-
       spanYears.innerHTML = `<strong>Em anos:</strong>${parseInt(msLived/yearMs)}`
       spanMonths.innerHTML = `<strong>Em meses:</strong>${parseInt(msLived/monthMs)}`
       spanDays.innerHTML = `<strong>Em dias:</strong>${parseInt(msLived/dayMs)}`
@@ -118,10 +79,12 @@ const showTimeAlive = () =>{
       spanSeconds.innerHTML =`<strong>Em segundos:</strong>${parseInt(msLived/secondMs)}`
     }
   }, 1000);
+  return interval
 }
 
 const handleSubmit = (e) =>{
   e.preventDefault()
+  clearInterval(showTimeAlive())
   showTimeAlive()
 }
 

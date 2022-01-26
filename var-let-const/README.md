@@ -1,13 +1,64 @@
 <h1>var, let e const</h1>
 <h2>O que são variáveis? Por que utilizá-las?</h2>
 
-<h2>var vs let</h2>
+<h2>var vs let vs const</h2>
 var é mais antigo
 let não precisa de atribuição na declaração
 var pode ser redeclarado
 let não pode ser redeclarado
 const não pode ser redeclarada
 const não pode ser reinicializada
+let tem escopo de bloco
+var só tem escopo de função
+
+
+## Busca da variável em JS
+```
+let nome = 'Luiz'
+
+if (true){
+  let nome = 'Eduardo'
+
+  if (true){
+    let nome = 'João'
+    console.log(nome)
+  }
+}
+```
+```
+var nome = 'Luiz'
+var nome = 'Luiza'
+if (true){
+  var nome = 'Eduardo'
+
+  if (true){
+    var nome = 'João'
+  }
+}
+console.log(nome) //Imprime 'João'
+```
+O JS busca, a variável que está no escopo atual. Caso não a encontre, procura no escopo maior e assim sucessivamente até achar a mesma.
+
+## Hoisting em JS
+Com palavras declaradas com o comando function e variáveis declaradas com var, ocorre o hoisting. Isso nada mais é do que a elevação da declaração de certa função/variável.
+```
+console.log(nome) //undefined, não gera erro
+var nome = 'Eduardo'
+```
+Nesse caso, o JS antes de iniciar a execução, sobe a declaração dessa variável, algo como:
+```
+var nome;
+console.log(nome) //undefined, não gera erro
+nome = 'Eduardo'
+```
+Isso não ocorre com o let, pois sua declaração não é elevada
+```
+console.log(nome) //gera erro
+let nome = 'Eduardo'
+```
+
+
+
 
 <h2>Consts</h2>
 Usadas para valores constantes
